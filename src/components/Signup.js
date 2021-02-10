@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -26,31 +25,35 @@ function Signup() {
         }
         setLoading(false)
     }
-
+ 
     return (
-        <Card className="w-25 justify-content-center align-items-center bg-light rounded p-5">
-            <Form onSubmit={handleSubmit}>
-                <h3>Sign Up</h3>
-                { error && <Alert variant="danger">{error}</Alert>}
-                { currentUser && <b>{currentUser.email}</b>}
-                <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" ref={emailRef} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" ref={passwordRef} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" ref={confirmPasswordRef} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Button disabled={loading} type="submit">Sign Up</Button>
-                </Form.Group>
-            </Form>
-            <h6>Already have an account? Log In</h6>
-        </Card>
+        <>
+            <Card className="rounded bg-light">
+                <Card.Body>
+                    <h3 className="text-center mb-3">Sign Up</h3>
+                    <Form onSubmit={handleSubmit}>
+                        { error && <Alert variant="danger">{error}</Alert>}
+                        { currentUser && <b>{currentUser.email}</b>}
+                        <Form.Group id="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" ref={emailRef} required/>
+                        </Form.Group>
+                        <Form.Group id="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" ref={passwordRef} required/>
+                        </Form.Group>
+                        <Form.Group id="confirm-password">
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control type="password" ref={confirmPasswordRef} required/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Button disabled={loading} type="submit" className="w-100">Sign Up</Button>
+                        </Form.Group>
+                    </Form>
+                </Card.Body>
+            </Card> 
+            <div className="w-100 text-center mt-2">Already have an account? Log In</div>
+        </>
     )
 }
 
