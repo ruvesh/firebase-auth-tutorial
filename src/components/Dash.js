@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Card, Button, Alert } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 export default function Dash() {
     const { logout, currentUser } = useAuth()
@@ -30,6 +30,7 @@ export default function Dash() {
                 <h3 className="text-center mb-3">Profile</h3>
                 { error && <Alert variant="danger">{error}</Alert>}
                 { currentUser && <strong>{currentUser.email}</strong>}
+                <Link className="btn btn-primary mt-2 w-100" to="/update-profile">Update Profile</Link>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
